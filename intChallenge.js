@@ -12,7 +12,7 @@
       For example we should be able to do as follows:
 */
 
-let superBowl = new eventEmmiter();
+let superBowl = new EventEmmiter();
 const cheer = function(eventData){
    console.lot('Raaaahhhh!!!! Go' + eventData.scoringTeam);
 }
@@ -28,6 +28,24 @@ superBowl.emit('touchdown', { scoringTeam: 'Seahawks'});
 
 // Solution
 
-//Great opportunity to use ES6 classes. 
+//Great opportunity to use ES6 classes. We start with a basic structure for the class 'eventEmitter' and initialize it with an obj 'event' that we will use to track our events.
+
+class EventEmitter {
+   constructor () {
+      this.events = {};
+   }
+}
+
+// ON
+// start working on our methods. 'on' is the first
+on(eventName, callbackFn){
+   if(!this.events[eventName]){
+      this.events[eventName] = [];
+   }
+   this.events[eventName].push(callbackFn);
+}
+//because functions are 'first class objects' in javascript, which basically means they can be stored in a variable, or an array, we can just push the callback function to an array stored at the key 'eventName' in our events object.
+
+
 
 
