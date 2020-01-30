@@ -26,4 +26,8 @@ superBowl.emit('touchdown', { scoringTeam: 'Patriots'}); // Both 'cheer' and 'je
 superBowl.removeListener('touchdown', jeer);
 superBowl.emit('touchdown', { scoringTeam: 'Seahawks'});
 
+// Solution
+
+//Great opportunity to use ES6 classes. 
+
 
