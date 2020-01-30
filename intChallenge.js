@@ -38,14 +38,36 @@ class EventEmitter {
 
 // ON
 // start working on our methods. 'on' is the first
-on(eventName, callbackFn){
-   if(!this.events[eventName]){
-      this.events[eventName] = [];
+on (eventName, callbackFn) {
+   if (!this.events[eventName])  {
+     this.events[eventName] = []
    }
-   this.events[eventName].push(callbackFn);
-}
+   this.events[eventName].push(callbackFn)
+ }
 //because functions are 'first class objects' in javascript, which basically means they can be stored in a variable, or an array, we can just push the callback function to an array stored at the key 'eventName' in our events object.
 
+//EMIT
+//This solution takes advantage of what is called 'closure' in javascript. A closure is essentially when a function has references to its surrounding state or its lexical environment. You can also think of this as a closure allowing you access to an outer function's scope from inside an inner function. Using global vars is a great example of closure.
 
+emit (eventName, eventData){
+    if(!this.events[eventName])return;
+    this.events[eventName].forEach(fn=> fn(eventData));
+}
 
+//Here's another example of using closure to track how many times a function was called
 
+function tracker(fn){
+   let numTimesCalled = 0;
+   return function(){
+      numTimesCalled++;
+      console.log('I was called', numTimesCalled);
+      return fn();
+   }
+}
+
+function hello(){
+   console.log('Hello');
+}
+
+const trackedHello = tracker(hello);
+//The inner function returned in 'tracker' close over the variable 'numTimesCalled' and maintains a reference to it for the life of the 'trackedHello' function. 
