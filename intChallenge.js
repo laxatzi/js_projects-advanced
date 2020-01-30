@@ -1,3 +1,5 @@
+//* Project introduced by coderbyte's newsletter , Developer: elisabeth gross
+
 // The Challenge
 
 /*
@@ -71,3 +73,11 @@ function hello(){
 
 const trackedHello = tracker(hello);
 //The inner function returned in 'tracker' close over the variable 'numTimesCalled' and maintains a reference to it for the life of the 'trackedHello' function. 
+
+//REMOVELISTENER 
+// The 'removeListener' method is the easiest of the three
+removeListener(eventName, callbackFn){
+   const index = this.events[eventName].indexOf(callbackFn);
+   if(index === -1)return
+   this.event[eventName].splice(index, 1);
+}
