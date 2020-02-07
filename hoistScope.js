@@ -7,7 +7,7 @@
      Declares a block scoped variable, optionally initializing it to a value
    
    --CONST
-     Declares constants which are block scoped and creates  a read only reference to a value.
+     Declares constants which are block scoped and creates a read only reference to a value.
 
 
 */
@@ -43,9 +43,11 @@ let x =1;
 */
 
  (function(){
+    {
       var x = 2;
       let y = 3;
       const z = 4;
+   }
    if(true){
       console.log(x); // 2 
       console.log(y); // ReferenceError: y is not defined --out of scope;
@@ -73,7 +75,7 @@ let x =1;
  // this is STRONGLY advised against, as it makes debugging difficult. e.g
 
  x = "this gets attached to the global this";
- console.log(this.str); // undefined
+ console.log(this.x); // prints value of x. 
 
  function testFn(){
     y = "this also gets attached to the global this";
